@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import EntryContext from "../context/EntryContext";
 
 const IndexScreen = () => {
+  //grab props of context, bind it
+  const value = useContext(EntryContext);
   return (
     <View>
-      <Text>Index Screen</Text>
+      <Text>{value}</Text>
     </View>
   );
 };
