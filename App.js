@@ -1,7 +1,8 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import IndexScreen from "./src/screens/IndexScreen";
-import React form 'react';
+import React from "react";
+import { EntryProvider } from "./src/context/EntryContext";
 //Create Navigator. It takes in two arguments. First one is route configuration
 // object which lists out all of the possible screens a user can navigate to.
 const navigator = createStackNavigator(
@@ -21,7 +22,12 @@ const navigator = createStackNavigator(
 //Passing in Stack Navigator to Create App Container
 //Assign result to a variable
 const App = createAppContainer(navigator);
-//Rather than export createAppContainer, wrap it in custom component and export. 
+//Rather than export createAppContainer, wrap it in custom component and export.
 export default () => {
-  return <App />;
+  return (
+    //Passing in app as an arg to BlogProvider
+    <EntryProvider>
+      <App />
+    </EntryProvider>
+  );
 };
