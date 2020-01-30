@@ -7,8 +7,9 @@ const EntryContext = React.createContext();
 
 //create a component that can accept another component as an argument
 export const EntryProvider = ({ children }) => {
+  const Entries = [{ title: "Entry #1" }, { title: "Entry #2" }];
   return (
-    <EntryContext.Provider value={5}>
+    <EntryContext.Provider value={Entries}>
       {/* argument is going to be shown inside EntryProvider */}
       {children}
     </EntryContext.Provider>
