@@ -10,10 +10,10 @@ export const EntryProvider = ({ children }) => {
   //entries=initial State, setEntries is the setter, get value from use
   //state
   const [entries, setEntries] = useState([]);
+  //add a new array, then take all entries and add to new array
+  //then add new object into array
   const addEntries = () => {
-    //add a new array, then take all entries and add to new array
-    //then add new object into array
-    setEntries([...entries], { title: `Entry #${entries.length + 1}` });
+    setEntries([...entries, { title: `Entry #${entries.length + 1}` }]);
   };
   return (
     <EntryContext.Provider value={{ data: entries, addEntries }}>
