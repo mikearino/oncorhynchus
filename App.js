@@ -25,7 +25,7 @@ const App = createAppContainer(navigator);
 //Rather than export createAppContainer, wrap it in custom component and export.
 export default () => {
   return (
-    //Passing in app as an arg to BlogProvider
+    //Passing in app as an arg to EntryProvider
     <EntryProvider>
       <App />
     </EntryProvider>
