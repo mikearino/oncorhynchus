@@ -1,9 +1,10 @@
-import React, { useReducer } from "react";
+//Any time you want to add a resource inside app, you just create a new
+//---Context.js file, create a reducer, create functions that modify
+//reducer, then call createDataContext, pass in reducer, object with all
+//different actions/default state. It gives back Context object and Provider
+//which makes all data available to something inside the app
+import createDataContext from "../context/createDataContext";
 
-//This is the pipe, when created it comes with provider.
-//Whatever information we provide it is going to become
-//available to all of our child components
-const EntryContext = React.createContext();
 //React knows to run reducer when dispatch is called
 const entryReducer = (state, action) => {
   switch (action.type) {
@@ -15,21 +16,12 @@ const entryReducer = (state, action) => {
   }
 };
 
-//create a component that can accept another component as an argument
-export const EntryProvider = ({ children }) => {
-  //1st arg= reducer to use, 2nd is initial state object
-  const [entries, dispatch] = useReducer(blogReducer, []);
-  //method to run dispatch that gets passed down to provider
-  const addEntry = () => {
-    dispatch({ type: "add_entry" });
-  };
-
-  return (
-    <EntryContext.Provider value={{ data: entries, addEntry }}>
-      {/* argument is going to be shown inside EntryProvider */}
-      {children}
-    </EntryContext.Provider>
-  );
+const addEntry = () => {
+  dispatch({ type: "add_entry" });
 };
 
-export default EntryContext;
+export const { Context, Provider } = createDataContext(
+  entryReducer,
+  { addEntry },
+  []
+);
