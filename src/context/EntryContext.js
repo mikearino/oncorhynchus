@@ -10,7 +10,13 @@ const entryReducer = (state, action) => {
   switch (action.type) {
     case "add_entry":
       //return new array with all current values of state and add new entry
-      return [...state, { title: `Entry #${state.length + 1}` }];
+      return [
+        ...state,
+        {
+          id: Math.floor(Math.random() * 99999),
+          title: `Entry #${state.length + 1}`
+        }
+      ];
     default:
       return state;
   }
