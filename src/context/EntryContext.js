@@ -1,5 +1,5 @@
 //Any time you want to add a resource inside app, you just create a new
-//---Context.js file, create a reducer, create functions that modify
+//"*&^%"Context.js file, create a reducer, create functions that modify
 //reducer, then call createDataContext, pass in reducer, object with all
 //different actions/default state. It gives back Context object and Provider
 //which makes all data available to something inside the app

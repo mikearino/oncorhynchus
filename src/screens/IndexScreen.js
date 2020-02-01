@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { View, Text, StyleSheet, FlatList, Button } from "react-native";
 import { Context } from "../context/EntryContext";
-
+import { Feather } from "@expo/vector-icons";
 const IndexScreen = () => {
   //grab props of context with hook, bind it
   const { state, addEntry } = useContext(Context);
@@ -18,13 +18,33 @@ const IndexScreen = () => {
         //called with argument that has a couple different properties
         //just need item so destructure
         renderItem={({ item }) => {
-          return <Text>{item.title} </Text>;
+          return (
+            <View style={styles.row}>
+              <Text style={styles.title}>{item.title} </Text>
+              <Feather style={styles.icon} name="trash" />
+            </View>
+          );
         }}
       />
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingVertical: 20,
+    borderTopWidth: 1,
+    borderColor: "gray",
+    paddingHorizontal: 10
+  },
+  title: {
+    fontSize: 18
+  },
+  icon: {
+    fontSize: 24
+  }
+});
 
 export default IndexScreen;
