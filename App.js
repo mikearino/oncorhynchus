@@ -2,7 +2,7 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import IndexScreen from "./src/screens/IndexScreen";
 import React from "react";
-import { EntryProvider } from "./src/context/EntryContext";
+import { Provider } from "./src/context/EntryContext";
 //Create Navigator. It takes in two arguments. First one is route configuration
 // object which lists out all of the possible screens a user can navigate to.
 const navigator = createStackNavigator(
@@ -26,8 +26,8 @@ const App = createAppContainer(navigator);
 export default () => {
   return (
     //Passing in app as an arg to EntryProvider
-    <EntryProvider>
+    <Provider>
       <App />
-    </EntryProvider>
+    </Provider>
   );
 };

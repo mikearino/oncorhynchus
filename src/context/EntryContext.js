@@ -15,9 +15,11 @@ const entryReducer = (state, action) => {
       return state;
   }
 };
-
-const addEntry = () => {
-  dispatch({ type: "add_entry" });
+//Pass in dispatch and then return it
+const addEntry = dispatch => {
+  return () => {
+    dispatch({ type: "add_entry" });
+  };
 };
 
 export const { Context, Provider } = createDataContext(

@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
 import { View, Text, StyleSheet, FlatList, Button } from "react-native";
-import EntryContext from "../context/EntryContext";
+import { Context } from "../context/EntryContext";
 
 const IndexScreen = () => {
   //grab props of context with hook, bind it
-  const { data, addEntries } = useContext(EntryContext);
+  const { state, addEntry } = useContext(Context);
   return (
     <View>
       {/* Callback for addEntries which runs state hook */}
-      <Button title="Add entry" onPress={addEntries} />
+      <Button title="Add entry" onPress={addEntry} />
       <FlatList
         //list of entries
-        data={data}
+        data={state}
         //Function called with every object in array, has to return
         //a string that gets used as a key
         keyExtractor={entry => entry.title}
