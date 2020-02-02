@@ -10,8 +10,8 @@ const CreateScreen = ({ navigation }) => {
   return (
     <View>
       <Text style={styles.label}>Enter Title:</Text>
-      {/* value={title} shows current state, onChangeText passes text
-      to setter */}
+      {/*Value={title} shows current state, onChangeText passes text
+      to setter.*/}
       <TextInput
         style={styles.input}
         value={title}
@@ -23,7 +23,7 @@ const CreateScreen = ({ navigation }) => {
         value={content}
         onChangeText={text => setContent(text)}
       />
-      {/* Passing in title and content to addEntry. Then run a callback*/}
+      {/* Passing in title and content to addEntry. Then run a callback.*/}
       {/* Navigation.navigate is dealt with in EntryContext as well. */}
       <Button
         title="Add entry"
