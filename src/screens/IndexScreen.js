@@ -8,8 +8,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import { Context } from "../context/EntryContext";
-import { Feather } from "@expo/vector-icons";
-import { NavigationEvents } from "react-navigation";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const IndexScreen = ({ navigation }) => {
   //grab props of context with hook, bind it
@@ -47,6 +46,26 @@ const IndexScreen = ({ navigation }) => {
   );
 };
 
+//Whenever screen is about to be displayed, react navigation will automatically
+//call this function and inspect the object being returned. You can use it to
+//customize a header or decide what is to be displayed if a user taps etc.
+IndexScreen.navigationOptions = () => {
+  return {
+    headerRight: (
+      <>
+        <TouchableOpacity>
+          <Feather name="plus" size={30} />
+          <MaterialCommunityIcons
+            style={styles.plusStyle}
+            name="fish"
+            size={36}
+          />
+        </TouchableOpacity>
+      </>
+    )
+  };
+};
+
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
@@ -61,6 +80,10 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 24
+  },
+  plusStyle: {
+    marginRight: 15,
+    marginTop: 5
   }
 });
 
