@@ -12,11 +12,10 @@ import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const IndexScreen = ({ navigation }) => {
   //grab props of context with hook, bind it
-  const { state, addEntry, deleteEntry } = useContext(Context);
+  const { state, deleteEntry } = useContext(Context);
+
   return (
     <View>
-      {/* Callback for addEntries which runs state hook */}
-      <Button title="Add entry" onPress={addEntry} />
       <FlatList
         //list of entries
         data={state}

@@ -23,8 +23,16 @@ const CreateScreen = ({ navigation }) => {
         value={content}
         onChangeText={text => setContent(text)}
       />
-      {/* Passing in title and content to addEntry */}
-      <Button title="Add entry" onPress={() => addEntry(title, content)} />
+      {/* Passing in title and content to addEntry. Then run a callback*/}
+      {/* Navigation.navigate is dealt with in EntryContext as well. */}
+      <Button
+        title="Add entry"
+        onPress={() => {
+          addEntry(title, content, () => {
+            navigation.navigate("Index");
+          });
+        }}
+      />
     </View>
   );
 };
