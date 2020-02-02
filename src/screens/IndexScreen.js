@@ -12,7 +12,6 @@ import { Feather } from "@expo/vector-icons";
 import { NavigationEvents } from "react-navigation";
 
 const IndexScreen = ({ navigation }) => {
-  console.log(navigation);
   //grab props of context with hook, bind it
   const { state, addEntry, deleteEntry } = useContext(Context);
   return (
@@ -29,9 +28,10 @@ const IndexScreen = ({ navigation }) => {
         //just need item so destructure
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Show", { id: item.id })}
+            >
               <View style={styles.row}>
-                onPress={() => navigation.navigate("Show", { id: item.id })}
                 <Text style={styles.title}>
                   {item.title} - {item.id}               
                 </Text>
