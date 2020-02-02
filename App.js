@@ -4,14 +4,15 @@ import IndexScreen from "./src/screens/IndexScreen";
 import React from "react";
 import { Provider } from "./src/context/EntryContext";
 import ShowScreen from "./src/screens/ShowScreen";
-
+import CreateScreen from "./src/screens/CreateScreen";
 //Create Navigator. It takes in two arguments.
 const navigator = createStackNavigator(
   //First one is route configuration object which lists out all of the possible
   //screens a user can navigate to.
   {
     Index: IndexScreen,
-    Show: ShowScreen
+    Show: ShowScreen,
+    Create: CreateScreen
   },
   {
     //Second argument is configuration options, specifically for Stack Navigator.
