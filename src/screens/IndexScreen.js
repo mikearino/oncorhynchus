@@ -46,17 +46,22 @@ const IndexScreen = ({ navigation }) => {
   );
 };
 
-//Whenever screen is about to be displayed, react navigation will automatically
-//call this function and inspect the object being returned. You can use it to
-//customize a header or decide what is to be displayed if a user taps etc.
-IndexScreen.navigationOptions = () => {
+//Whenever screen is about to be displayed, react navigation automatically calls
+//this function and inspects the object being returned. Use it to customize
+//a header or decide what is to be displayed if a user taps etc.
+//It is also going to be called with the same navigation prop just like
+//IndexScreen
+IndexScreen.navigationOptions = ({ navigation }) => {
   return {
     headerRight: (
       <>
-        <TouchableOpacity>
-          <Feather name="plus" size={30} />
+        <TouchableOpacity
+          style={styles.iconLayout}
+          onPress={() => navigation.navigate("Create")}
+        >
+          <Feather style={styles.plusStyle} name="plus" size={30} />
           <MaterialCommunityIcons
-            style={styles.plusStyle}
+            style={styles.fishStyle}
             name="fish"
             size={36}
           />
@@ -81,9 +86,16 @@ const styles = StyleSheet.create({
   icon: {
     fontSize: 24
   },
+  fishStyle: {
+    marginRight: 10,
+    marginBottom: 10
+  },
   plusStyle: {
-    marginRight: 15,
-    marginTop: 5
+    left: 5,
+    marginTop: 1
+  },
+  iconLayout: {
+    flexDirection: "row"
   }
 });
 
