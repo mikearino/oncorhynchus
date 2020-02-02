@@ -24,7 +24,8 @@ ShowScreen.navigationOptions = ({ navigation }) => {
   return {
     //add in an edit button to top right.
     headerRight: (
-      <TouchableOpacity onPress={() => navigation.navigate("Edit")}>
+      //Pass in navigation with entry id.
+      <TouchableOpacity onPress={() => navigation.navigate("Edit", entry.id)}>
         <EvilIcons name="pencil" size={35} />
       </TouchableOpacity>
     )

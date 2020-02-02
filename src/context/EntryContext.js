@@ -47,5 +47,5 @@ const addEntry = dispatch => {
 export const { Context, Provider } = createDataContext(
   entryReducer,
   { addEntry, deleteEntry },
-  []
+  [{ title: "test post", content: "test content", id: 1 }]
 );
