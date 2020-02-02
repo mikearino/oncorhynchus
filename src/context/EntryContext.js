@@ -20,7 +20,8 @@ const entryReducer = (state, action) => {
         ...state,
         {
           id: Math.floor(Math.random() * 99999),
-          title: `Entry #${state.length + 1}`
+          title: action.payload.title,
+          content: action.payload.content
         }
       ];
     default:
@@ -36,8 +37,9 @@ const deleteEntry = dispatch => {
 };
 //Pass in dispatch and then return it
 const addEntry = dispatch => {
-  return () => {
-    dispatch({ type: "add_entry" });
+  //Passing in Title and Content from Create screen
+  return (title, content) => {
+    dispatch({ type: "add_entry", payload: { title, content } });
   };
 };
 

@@ -6,6 +6,7 @@ import { Context } from "../context/EntryContext";
 const CreateScreen = ({ navigation }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const { addEntry } = useContext(Context);
   return (
     <View>
       <Text style={styles.label}>Enter Title:</Text>
@@ -22,7 +23,8 @@ const CreateScreen = ({ navigation }) => {
         value={content}
         onChangeText={text => setContent(text)}
       />
-      <Button title="Add entry" />
+      {/* Passing in title and content to addEntry */}
+      <Button title="Add entry" onPress={() => addEntry(title, content)} />
     </View>
   );
 };
