@@ -8,6 +8,12 @@ import createDataContext from "../context/createDataContext";
 //React knows to run reducer when dispatch is called
 const entryReducer = (state, action) => {
   switch (action.type) {
+    case "delete_entry":
+      // iterate through all of the different elements in an array and then
+      // run a child element that will be passed in. If a true value is returned
+      // Then the given element will be returned inside of a new overall array.
+      // If a false value is returned, then it is going to be rejected.
+      return state.filter(entry => entry.id !== action.payload);
     case "add_entry":
       //return new array with all current values of state and add new entry
       return [
@@ -21,6 +27,13 @@ const entryReducer = (state, action) => {
       return state;
   }
 };
+//Receives id as an argument.
+const deleteEntry = dispatch => {
+  //type="Thing to do", payload="id to delete"
+  return id => {
+    dispatch({ type: "delete_entry", payload: id });
+  };
+};
 //Pass in dispatch and then return it
 const addEntry = dispatch => {
   return () => {
@@ -30,6 +43,6 @@ const addEntry = dispatch => {
 
 export const { Context, Provider } = createDataContext(
   entryReducer,
-  { addEntry },
+  { addEntry, deleteEntry },
   []
 );

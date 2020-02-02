@@ -9,9 +9,10 @@ import {
 } from "react-native";
 import { Context } from "../context/EntryContext";
 import { Feather } from "@expo/vector-icons";
+
 const IndexScreen = () => {
   //grab props of context with hook, bind it
-  const { state, addEntry } = useContext(Context);
+  const { state, addEntry, deleteEntry } = useContext(Context);
   return (
     <View>
       {/* Callback for addEntries which runs state hook */}
@@ -30,7 +31,7 @@ const IndexScreen = () => {
               <Text style={styles.title}>
                 {item.title} - {item.id}               
               </Text>
-              <TouchableOpacity onPress={() => console.log(item.id)}>
+              <TouchableOpacity onPress={() => deleteEntry(item.id)}>
                 <Feather style={styles.icon} name="trash" />
               </TouchableOpacity>
             </View>
