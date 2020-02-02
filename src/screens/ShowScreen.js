@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { View, Text, Stylesheet } from "react-native";
 import { HeaderTitle } from "react-navigation-stack";
 import { Context } from "../context/EntryContext";
-
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { EvilIcons } from "@expo/vector-icons";
 const ShowScreen = ({ navigation }) => {
   //gives list of entries provided by context
   const { state } = useContext(Context);
@@ -14,8 +15,20 @@ const ShowScreen = ({ navigation }) => {
   return (
     <View>
       <Text>{entry.title}</Text>
+      <Text>{entry.content}</Text>
     </View>
   );
+};
+
+ShowScreen.navigationOptions = ({ navigation }) => {
+  return {
+    //add in an edit button to top right.
+    headerRight: (
+      <TouchableOpacity onPress={() => navigation.navigate("Edit")}>
+        <EvilIcons name="pencil" size={35} />
+      </TouchableOpacity>
+    )
+  };
 };
 
 export default ShowScreen;
