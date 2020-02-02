@@ -12,6 +12,7 @@ export default (reducer, actions, initialState) => {
     //1st arg= reducer to use, 2nd is initial state object
     const [state, dispatch] = useReducer(reducer, initialState);
     //actions === { addEntry: (dispatch) => { return () => {} }}
+
     const boundActions = {};
     //key === 'addEntry'
     for (let key in actions) {

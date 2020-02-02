@@ -9,8 +9,10 @@ import {
 } from "react-native";
 import { Context } from "../context/EntryContext";
 import { Feather } from "@expo/vector-icons";
+import { NavigationEvents } from "react-navigation";
 
-const IndexScreen = () => {
+const IndexScreen = ({ navigation }) => {
+  console.log(navigation);
   //grab props of context with hook, bind it
   const { state, addEntry, deleteEntry } = useContext(Context);
   return (
@@ -27,14 +29,17 @@ const IndexScreen = () => {
         //just need item so destructure
         renderItem={({ item }) => {
           return (
-            <View style={styles.row}>
-              <Text style={styles.title}>
-                {item.title} - {item.id}               
-              </Text>
-              <TouchableOpacity onPress={() => deleteEntry(item.id)}>
-                <Feather style={styles.icon} name="trash" />
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity>
+              <View style={styles.row}>
+                onPress={() => navigation.navigate("Show", { id: item.id })}
+                <Text style={styles.title}>
+                  {item.title} - {item.id}               
+                </Text>
+                <TouchableOpacity onPress={() => deleteEntry(item.id)}>
+                  <Feather style={styles.icon} name="trash" />
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
           );
         }}
       />
