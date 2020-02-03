@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 
-const EntryForm = () => {
+const EntryForm = ({ onSubmit }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   return (
@@ -20,9 +20,10 @@ const EntryForm = () => {
         value={content}
         onChangeText={text => setContent(text)}
       />
-      {/* Passing in title and content to addEntry. Then run a callback.*/}
-      {/* Navigation.navigate is dealt with in EntryContext as well. */}
-      <Button title="Add entry" />
+      {/* Passing in title and content to addEntry. Then run a callback
+      onSubmit with title and content state variables passed in.*/}
+
+      <Button title="Add entry" onPress={() => onSubmit(title, content)} />
     </View>
   );
 };
