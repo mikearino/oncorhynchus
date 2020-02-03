@@ -39,7 +39,9 @@ const addEntry = dispatch => {
   //Passing in Title and Content from Create screen.
   return (title, content, callback) => {
     dispatch({ type: "add_entry", payload: { title, content } });
-    callback();
+    if (callback) {
+      callback();
+    }
   };
 };
 //Receives id as an argument.
@@ -50,8 +52,11 @@ const deleteEntry = dispatch => {
   };
 };
 const editEntry = dispatch => {
-  return (id, title, content) => {
+  return (id, title, content, callback) => {
     dispatch({ type: "edit_entry", payload: { id, title, content } });
+    if (callback) {
+      callback();
+    }
   };
 };
 

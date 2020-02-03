@@ -15,7 +15,9 @@ const EditScreen = ({ navigation }) => {
       initialValues={{ title: entry.title, content: entry.content }}
       onSubmit={(title, content) => {
         //Passing in id to editEntry which gets sent to Context.
-        editEntry(id, title, content);
+        //Navigation.pop() pops off the current view and returns to
+        //previous screen.
+        editEntry(id, title, content, () => navigation.pop());
       }}
     />
   );
