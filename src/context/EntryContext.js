@@ -24,16 +24,17 @@ const entryReducer = (state, action) => {
           content: action.payload.content
         }
       ];
+    case "edit_entry":
+      return [
+        {
+          id,
+          title: action.payload.title,
+          content: action.payload.content
+        }
+      ];
     default:
       return state;
   }
-};
-//Receives id as an argument.
-const deleteEntry = dispatch => {
-  //Type="Thing to do", payload="id to delete."
-  return id => {
-    dispatch({ type: "delete_entry", payload: id });
-  };
 };
 //Pass in dispatch and then return it
 const addEntry = dispatch => {
@@ -43,9 +44,21 @@ const addEntry = dispatch => {
     callback();
   };
 };
+//Receives id as an argument.
+const deleteEntry = dispatch => {
+  //Type="Thing to do", payload="id to delete."
+  return id => {
+    dispatch({ type: "delete_entry", payload: id });
+  };
+};
+const editEntry = dispatch => {
+  return (id, title, content) => {
+    dispatch({ type: "edit_entry", payload: { id, title, content } });
+  };
+};
 
 export const { Context, Provider } = createDataContext(
   entryReducer,
-  { addEntry, deleteEntry },
+  { addEntry, deleteEntry, editEntry },
   [{ title: "test post", content: "test content", id: 1 }]
 );

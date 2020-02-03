@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { StyleSheet } from "react-native";
-import { HeaderTitle } from "react-navigation-stack";
 import { Context } from "../context/EntryContext";
 import EntryForm from "../components/EntryForm";
 
