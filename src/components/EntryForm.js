@@ -27,6 +27,18 @@ const EntryForm = ({ onSubmit, initialValues }) => {
     </View>
   );
 };
+
+//defaultProps property can be used to give component some default property
+//values. If this component is shown without props, then this object will fill
+//in some default values. React automatically checks to see if the component
+//has this default property on it.
+EntryForm.defaultProps = {
+  initialValues: {
+    title: "",
+    content: ""
+  }
+};
+
 const styles = StyleSheet.create({
   input: {
     fontSize: 18,
