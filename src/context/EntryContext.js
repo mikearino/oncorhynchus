@@ -8,6 +8,12 @@ import createDataContext from "../context/createDataContext";
 //React knows to run reducer when dispatch is called
 const entryReducer = (state, action) => {
   switch (action.type) {
+    case "edit_entry":
+      //Map through all Entries. Once correct Id is found, return that one
+      //with action.payload property. Else return entry.
+      return state.map(entry => {
+        return entry.id === action.payload.id ? action.payload : entry;
+      });
     case "delete_entry":
       // Iterate through all of the different elements in an array and then
       // run a child element that will be passed in. If a true value is returned
@@ -20,14 +26,6 @@ const entryReducer = (state, action) => {
         ...state,
         {
           id: Math.floor(Math.random() * 99999),
-          title: action.payload.title,
-          content: action.payload.content
-        }
-      ];
-    case "edit_entry":
-      return [
-        {
-          id,
           title: action.payload.title,
           content: action.payload.content
         }

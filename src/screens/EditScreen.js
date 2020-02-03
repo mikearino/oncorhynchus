@@ -11,7 +11,7 @@ const EditScreen = ({ navigation }) => {
   return (
     <EntryForm
       //InitialValues is going to pass in an object from the found and bound
-      //variable entry. Entry form will recieve the inital values.
+      //variable entry. Entry form will receive the initial values.
       initialValues={{ title: entry.title, content: entry.content }}
       onSubmit={(title, content) => {
         //Passing in id to editEntry which gets sent to Context.
