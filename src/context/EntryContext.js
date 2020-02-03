@@ -4,10 +4,15 @@
 //different actions/default state. It gives back Context object and Provider
 //which makes all data available to something inside the app.
 import createDataContext from "../context/createDataContext";
+//This is the file that we are going to make our Axios requests from.
+import jsonServer from "../api/jsonServer";
 
 //React knows to run reducer when dispatch is called
 const entryReducer = (state, action) => {
   switch (action.type) {
+    //Total source of truth, so no need to add it on to existing state.
+    case "get_entries":
+      return action.payload;
     case "edit_entry":
       //Map through all Entries. Once correct Id is found, return that one
       //with action.payload property. Else return entry.
@@ -33,6 +38,16 @@ const entryReducer = (state, action) => {
     default:
       return state;
   }
+};
+const getEntries = dispatch => {
+  return async () => {
+    //Will be concatenated with axios url EX:"http://a8..."
+    const response = await jsonServer.get("/entries");
+    //response.data === [{}, {}, {}, {}]
+    //add in all data received from API. Then reducer captures
+    //data and returns it.
+    dispatch({ type: "get_entries", payload: response.data });
+  };
 };
 //Pass in dispatch and then return it
 const addEntry = dispatch => {
@@ -62,6 +77,7 @@ const editEntry = dispatch => {
 
 export const { Context, Provider } = createDataContext(
   entryReducer,
-  { addEntry, deleteEntry, editEntry },
-  [{ title: "test post", content: "test content", id: 1 }]
+  //Actions passed in.
+  { addEntry, deleteEntry, editEntry, getEntries },
+  []
 );
