@@ -8,7 +8,16 @@ const EditScreen = ({ navigation }) => {
   //then bind
   const entry = state.find(entry => entry.id === navigation.getParam("id"));
 
-  return <EntryForm />;
+  return (
+    <EntryForm
+      //InitialValues is going to pass in an object from the found and bound
+      //variable entry. Entry form will recieve the inital values.
+      initialValues={{ title: entry.title, content: entry.content }}
+      onSubmit={(title, content) => {
+        console.log(title, content);
+      }}
+    />
+  );
 };
 
 const styles = StyleSheet.create({});
