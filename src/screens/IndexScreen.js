@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   View,
   Text,
@@ -12,7 +12,15 @@ import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const IndexScreen = ({ navigation }) => {
   //grab props of context with hook, bind it
-  const { state, deleteEntry } = useContext(Context);
+  const { state, deleteEntry, getEntries } = useContext(Context);
+  //Component will only render this piece of code once. So it is
+  //imperative to run API calls like this.
+  useEffect(() => {
+    getEntries();
+    navigation.addListener("didFocus", () => {
+      getEntries();
+    });
+  }, []);
 
   return (
     <View>

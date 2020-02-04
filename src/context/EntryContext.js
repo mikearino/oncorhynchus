@@ -52,8 +52,10 @@ const getEntries = dispatch => {
 //Pass in dispatch and then return it
 const addEntry = dispatch => {
   //Passing in Title and Content from Create screen.
-  return (title, content, callback) => {
-    dispatch({ type: "add_entry", payload: { title, content } });
+  return async (title, content, callback) => {
+    //Post to entries, with title and content as an object.
+    await jsonServer.post("/entries", { title, content });
+    // dispatch({ type: "add_entry", payload: { title, content } });
     if (callback) {
       callback();
     }
