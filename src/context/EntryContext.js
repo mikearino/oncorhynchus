@@ -70,7 +70,8 @@ const deleteEntry = dispatch => {
   };
 };
 const editEntry = dispatch => {
-  return (id, title, content, callback) => {
+  return async (id, title, content, callback) => {
+    await jsonServer.put(`/entries/${id}`, { title, content });
     dispatch({ type: "edit_entry", payload: { id, title, content } });
     if (callback) {
       callback();
