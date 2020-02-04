@@ -17,9 +17,15 @@ const IndexScreen = ({ navigation }) => {
   //imperative to run API calls like this.
   useEffect(() => {
     getEntries();
+    //Upon return to this screen, run getEntries again. Add listener
+    //should be cleaned up.
     navigation.addListener("didFocus", () => {
       getEntries();
     });
+    //You need to add this because if not you get a memory leak.
+    return () => {
+      listener.remove();
+    };
   }, []);
 
   return (

@@ -25,16 +25,16 @@ const entryReducer = (state, action) => {
       // Then the given element will be returned inside of a new overall array.
       // If a false value is returned, then it is going to be rejected.
       return state.filter(entry => entry.id !== action.payload);
-    case "add_entry":
-      //Return new array with all current values of state and add new entry.
-      return [
-        ...state,
-        {
-          id: Math.floor(Math.random() * 99999),
-          title: action.payload.title,
-          content: action.payload.content
-        }
-      ];
+    // case "add_entry":
+    //   //Return new array with all current values of state and add new entry.
+    //   return [
+    //     ...state,
+    //     {
+    //       id: Math.floor(Math.random() * 99999),
+    //       title: action.payload.title,
+    //       content: action.payload.content
+    //     }
+    //   ];
     default:
       return state;
   }
@@ -64,7 +64,8 @@ const addEntry = dispatch => {
 //Receives id as an argument.
 const deleteEntry = dispatch => {
   //Type="Thing to do", payload="id to delete."
-  return id => {
+  return async id => {
+    await jsonServer.delete(`/entries/${id}`);
     dispatch({ type: "delete_entry", payload: id });
   };
 };
